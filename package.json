@@ -1,20 +1,13 @@
 {
-  "name": "agility-nextjs-starter-2020",
+  "name": "mca-productions",
   "version": "0.2.2",
   "private": true,
   "scripts": {
-    "predev": "node agility/agility.sync.js sync",
     "dev": "next dev",
-    "prebuild": "node agility/agility.sync.js prebuild",
     "build": "next build",
-    "postbuild": "node agility/agility.sync.js postbuild",
-    "start": "next build && next start",
-    "cms-pull": "NODE_ENV=development && node agility/agility.sync.js sync",
-    "cms-clear": "node agility/agility.sync.js clear"
+    "start": "next start"
   },
   "dependencies": {
-    "@agility/content-fetch": "^1.0.3",
-    "@agility/content-sync": "^0.1.24",
     "@tailwindcss/typography": "^0.2.0",
     "feather-icons": "^4.28.0",
     "framer-motion": "^2.1.0",
