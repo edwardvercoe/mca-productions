@@ -8,7 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.6.2",
     "@tailwindcss/typography": "^0.2.0",
+    "contentful": "^9.1.4",
     "feather-icons": "^4.28.0",
     "framer-motion": "^2.1.0",
     "fs-extra": "^9.0.1",
@@ -19,6 +21,7 @@
     "react-html-parser": "^2.0.2",
     "react-modal": "^3.11.2",
     "react-slick": "^0.27.0",
+    "safe-json-stringify": "^1.2.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.1",
     "truncate-html": "^1.0.3",
