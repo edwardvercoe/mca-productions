@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
+import Typical from "react-typical";
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
@@ -54,7 +55,10 @@ export default () => {
       <HeroContainer>
         <StyledHeader links={navLinks} />
         <Content>
-          <Heading>We are MCA Productions</Heading>
+          <Heading>
+            We are&nbsp;
+            <Typical steps={["MCA Productions", 2000, "Lit", 2000, "Swaggy", 2000]} loop={Infinity} wrapper="span" />
+          </Heading>
           {/* <PrimaryAction>Find out more</PrimaryAction> */}
         </Content>
       </HeroContainer>
