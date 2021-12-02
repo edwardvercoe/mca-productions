@@ -22,7 +22,7 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const rawData = await fetchEntries({ content_type: "homeHighlightWork" });
   const stringifiedData = safeJsonStringify(rawData);
   const posts = JSON.parse(stringifiedData);
@@ -31,6 +31,5 @@ export async function getStaticProps() {
     props: {
       posts: posts[0].fields,
     },
-    revalidate: 5,
   };
 }
