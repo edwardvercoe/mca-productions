@@ -31,33 +31,20 @@ const Textarea = styled(Input).attrs({ as: "textarea" })`
 
 const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`;
 
-export default ({
-  subheading = "Contact Us",
-  heading = (
-    <>
-      Start your vision <span tw="text-primary-500">with us.</span>
-      <wbr />
-    </>
-  ),
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  submitButtonText = "Send",
-  formAction = "#",
-  formMethod = "get",
-  textOnLeft = true,
-}) => {
+export default function ContactUs({ contact, subheading = "Contact Us", submitButtonText = "Send", formAction = "#", formMethod = "get", textOnLeft = true }) {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
 
   return (
     <Container>
       <TwoColumn>
         <ImageColumn>
-          <Image imageSrc={"https://scontent.fsyd4-1.fna.fbcdn.net/v/t39.30808-6/245691808_10226104528379653_7927731764187144709_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=rxt3gup7h4gAX-5ny0l&_nc_ht=scontent.fsyd4-1.fna&oh=53f92869129f4a1fe7141d0b1096ae48&oe=61AAE77F"} />
+          <Image imageSrc={"https:" + contact.image.fields.file.url} />
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>
             {subheading && <Subheading>{subheading}</Subheading>}
-            <Heading>{heading}</Heading>
-            {description && <Description>{description}</Description>}
+            <Heading>{contact.title}</Heading>
+            <Description>{contact.subtitle}</Description>
             <Form action={formAction} method={formMethod}>
               <Input type="email" name="email" placeholder="Your Email Address" />
               <Input type="text" name="name" placeholder="Full Name" />
@@ -70,4 +57,4 @@ export default ({
       </TwoColumn>
     </Container>
   );
-};
+}

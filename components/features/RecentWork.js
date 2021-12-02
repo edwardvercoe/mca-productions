@@ -28,9 +28,9 @@ const SvgDotPattern2 = tw(SvgDotPatternIcon)`absolute top-0 right-0 transform tr
 const SvgDotPattern3 = tw(SvgDotPatternIcon)`absolute bottom-0 left-0 transform -translate-x-20 rotate-45 -translate-y-8 -z-10 opacity-25 text-primary-500 fill-current w-24`;
 const SvgDotPattern4 = tw(SvgDotPatternIcon)`absolute bottom-0 right-0 transform translate-x-20 rotate-90 -translate-y-24 -z-10 opacity-25 text-primary-500 fill-current w-24`;
 
-export default function RecentWork({ posts }) {
-  // console.log(cards);
-  const cards = posts.highlightWork;
+export default function RecentWork({ highlights }) {
+  if (!highlights) return <div>loading...</div>;
+  const cards = highlights.highlightWork;
 
   // const cards = [
   //   {
@@ -62,8 +62,8 @@ export default function RecentWork({ posts }) {
     <Container>
       <SingleColumn>
         <HeadingInfoContainer>
-          <HeadingTitle>{posts.highlightTitle}</HeadingTitle>
-          <HeadingDescription>{posts.subtitleText}</HeadingDescription>
+          <HeadingTitle>{highlights.highlightTitle}</HeadingTitle>
+          <HeadingDescription>{highlights.subtitleText}</HeadingDescription>
         </HeadingInfoContainer>
 
         <Content>
