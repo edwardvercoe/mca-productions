@@ -75,7 +75,7 @@ export default function Testimonials({ testimonials }) {
     <Container>
       <Content>
         <HeadingInfoContainer>
-          <HeadingTitle>{testimonials.header}</HeadingTitle>
+          <HeadingTitle>{testimonials.heading}</HeadingTitle>
           <HeadingDescription></HeadingDescription>
         </HeadingInfoContainer>
         <TestimonialSliderContainer>

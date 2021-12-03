@@ -1,5 +1,5 @@
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
-import Hero from "components/hero/BackgroundAsImageWithCenteredContent.js";
+import Hero from "components/hero/Hero.js";
 import Testimonial from "components/testimonials/Testimonials.js";
 import ContactUsForm from "components/forms/ContactUs.js";
 import RecentWork from "components/features/RecentWork.js";
