@@ -1,9 +1,7 @@
-import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
 import Hero from "components/hero/Hero.js";
 import Testimonial from "components/testimonials/Testimonials.js";
 import ContactUsForm from "components/forms/ContactUs.js";
 import RecentWork from "components/features/RecentWork.js";
-import Footer from "components/footers/MiniCenteredFooter.js";
 import Team from "components/cards/TeamProfile";
 
 import { fetchRecentWork } from "../contentful/fetchData";
@@ -11,14 +9,13 @@ import safeJsonStringify from "safe-json-stringify";
 
 export default function Home({ highlights, team, contact, testimonials, hero }) {
   return (
-    <AnimationRevealPage disabled={true}>
+    <>
       <Hero hero={hero} />
       <RecentWork highlights={highlights} />
       <Testimonial testimonials={testimonials} />
       <Team team={team} />
       <ContactUsForm contact={contact} />
-      <Footer />
-    </AnimationRevealPage>
+    </>
   );
 }
 

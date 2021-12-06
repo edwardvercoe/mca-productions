@@ -67,7 +67,7 @@ export default function Testimonials({ hero }) {
   return (
     <Container>
       <OpacityOverlay />
-      <StyledReactPlayer playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
+      <StyledReactPlayer controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
 
       <HeroContainer>
         <StyledHeader links={navLinks} />
