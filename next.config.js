@@ -13,7 +13,7 @@ module.exports = {
     }
 
     config.module.rules.push({
-      test: /\.svg$/,
+      test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
       issuer: {
         test: /\.(js|ts)x?$/,
       },

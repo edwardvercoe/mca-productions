@@ -79,7 +79,7 @@ export default function Testimonials({ testimonials }) {
           <HeadingDescription></HeadingDescription>
         </HeadingInfoContainer>
         <TestimonialSliderContainer>
-          <TestimonialSlider nextArrow={<NextArrow />} prevArrow={<PreviousArrow />}>
+          <TestimonialSlider autoplaySpeed={10000} autoplay={true} nextArrow={<NextArrow />} prevArrow={<PreviousArrow />}>
             {testimonialSingle.map((testimonial, index) => (
               <Testimonial key={index}>
                 <ImageContainer>

@@ -2,9 +2,18 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
+import ReactPlayer from "react-player";
 
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import Typical from "react-typical";
+
+const StyledReactPlayer = styled(ReactPlayer)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
@@ -52,6 +61,8 @@ export default function Testimonials() {
   return (
     <Container>
       <OpacityOverlay />
+      <StyledReactPlayer playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url="https://youtu.be/EyFsv8o12EY" />
+
       <HeroContainer>
         <StyledHeader links={navLinks} />
         <Content>

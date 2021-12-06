@@ -8,13 +8,13 @@ import Link from "next/link";
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.svg";
+const logo = "https://lh3.google.com/u/0/d/1LNeob7uTssQm2sReZPDFuCqzqgJPG4li=w1920-h946-iv1";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
 const Header = tw.header`
   flex justify-between items-center
-  max-w-screen-xl mx-auto mb-8
+  max-w-screen-xl mx-auto mb-8 
 `;
 
 export const NavLinks = tw.div`inline-block`;
@@ -45,7 +45,7 @@ export const LogoLink = styled(NavLink)`
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
 export const NavToggle = tw.button`
-  lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
+  lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300 fixed right-0
 `;
 export const MobileNavLinks = motion.custom(styled.div`
   ${tw`lg:hidden z-40 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
