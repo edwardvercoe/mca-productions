@@ -9,10 +9,10 @@ import Team from "components/cards/TeamProfile";
 import { fetchRecentWork } from "../contentful/fetchData";
 import safeJsonStringify from "safe-json-stringify";
 
-export default function Home({ highlights, team, contact, testimonials }) {
+export default function Home({ highlights, team, contact, testimonials, hero }) {
   return (
     <AnimationRevealPage disabled={true}>
-      <Hero />
+      <Hero hero={hero} />
       <RecentWork highlights={highlights} />
       <Testimonial testimonials={testimonials} />
       <Team team={team} />
@@ -39,12 +39,17 @@ export async function getServerSideProps() {
   const stringifiedTestimonials = safeJsonStringify(testimonialsData);
   const testimonials = JSON.parse(stringifiedTestimonials);
 
+  const heroData = await fetchRecentWork({ content_type: "heroBlock" });
+  const stringifiedHero = safeJsonStringify(heroData);
+  const hero = JSON.parse(stringifiedHero);
+
   return {
     props: {
       highlights: highlights[0].fields,
       team: team[0].fields,
       contact: contact[0].fields,
       testimonials: testimonials[0].fields,
+      hero: hero[0].fields,
     },
   };
 }

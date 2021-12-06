@@ -28,7 +28,6 @@ const StyledHeader = styled(Header)`
 const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`;
 const Container = styled.div`
   ${tw`relative -mx-8 -mt-8 bg-center bg-cover h-screen min-h-144`}
-  background-image: url("https://images.unsplash.com/photo-1536300007881-7e482242baa5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80");
 `;
 
 const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-black opacity-75`;
@@ -45,7 +44,14 @@ const Heading = styled.h1`
 
 const PrimaryAction = tw.button`rounded-full px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 bg-gray-100 font-bold shadow transition duration-300 bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:outline-none focus:shadow-outline`;
 
-export default function Testimonials() {
+export default function Testimonials({ hero }) {
+  if (!hero) return <div>loading...</div>;
+
+  let textArray = [];
+  for (const item of hero.titleList) {
+    textArray.push(item, 2000);
+  }
+
   const navLinks = [
     <NavLinks key={1}>
       <NavLink href="#">Highlights</NavLink>
@@ -67,8 +73,8 @@ export default function Testimonials() {
         <StyledHeader links={navLinks} />
         <Content>
           <Heading>
-            We are&nbsp;
-            <Typical steps={["MCA Productions", 2000, "Lit", 2000, "Swaggy", 2000]} loop={Infinity} wrapper="span" />
+            {hero.titlePrefix}&nbsp;
+            <Typical steps={textArray} loop={Infinity} wrapper="span" />
           </Heading>
           {/* <PrimaryAction>Find out more</PrimaryAction> */}
         </Content>
