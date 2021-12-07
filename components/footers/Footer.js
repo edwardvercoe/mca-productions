@@ -2,7 +2,6 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { Container as ContainerBase } from "components/misc/Layouts.js";
-import logo from "../../images/logo.svg";
 import { ReactComponent as FacebookIcon } from "../../images/facebook-icon.svg";
 import { ReactComponent as TwitterIcon } from "../../images/twitter-icon.svg";
 import { ReactComponent as YoutubeIcon } from "../../images/youtube-icon.svg";
@@ -29,26 +28,26 @@ const SocialLink = styled.a`
 `;
 
 const CopyrightText = tw.p`text-center mt-10 font-medium tracking-wide text-sm text-gray-600`;
-export default function Footer() {
+export default function Footer({ globalSettings }) {
   return (
     <Container>
       <Content>
         <Row>
           <LogoContainer>
-            <LogoImg src={logo} />
+            <LogoImg src={"https:" + globalSettings.websiteLogo.fields.file.url} />
             <LogoText>MCA Productions</LogoText>
           </LogoContainer>
           <LinksContainer>
-            <Link href="#">Home</Link>
+            <Link href="/">Home</Link>
 
-            <Link href="#">Contact Us</Link>
+            <Link href="/contact">Contact Us</Link>
           </LinksContainer>
           <SocialLinksContainer>
-            <SocialLink href="https://www.instagram.com/mcacontent/">
+            <SocialLink href={globalSettings.instagramUrl} target="_blank">
               <InstaIcon />
             </SocialLink>
           </SocialLinksContainer>
-          <CopyrightText>&copy; Copyright 2021, MCA Productions. All Rights Reserved.</CopyrightText>
+          <CopyrightText>{globalSettings.copyrightText}</CopyrightText>
         </Row>
       </Content>
     </Container>

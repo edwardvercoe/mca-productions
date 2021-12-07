@@ -72,7 +72,7 @@ export default function Testimonials({ testimonials }) {
   const testimonialSingle = testimonials.testimonials;
 
   return (
-    <Container>
+    <Container id="testimonials">
       <Content>
         <HeadingInfoContainer>
           <HeadingTitle>{testimonials.heading}</HeadingTitle>

@@ -48,7 +48,7 @@ export default function Team({ team, heading = "Meet These Fine Folks.", subhead
   if (!team) return <div>loading...</div>;
 
   return (
-    <Container>
+    <Container id="team">
       <ContentWithPaddingXl>
         <HeadingContainer>
           {subheading && <Subheading>Our Team</Subheading>}

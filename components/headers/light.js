@@ -8,7 +8,6 @@ import Link from "next/link";
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-const logo = "https://lh3.google.com/u/0/d/1LNeob7uTssQm2sReZPDFuCqzqgJPG4li=w1920-h946-iv1";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
@@ -45,7 +44,7 @@ export const LogoLink = styled(NavLink)`
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
 export const NavToggle = tw.button`
-  lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300 fixed right-0
+lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
 `;
 export const MobileNavLinks = motion.custom(styled.div`
   ${tw`lg:hidden z-40 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
@@ -58,7 +57,7 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
-export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
+export default function NavbarLight({ globalSettings, roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -72,6 +71,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+
   const defaultLinks = [
     <NavLinks key={1}>
       <Link key={"/blog"} href={"/blog"}>
@@ -79,7 +79,9 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       </Link>
       <NavLink href="/#">About</NavLink>
       <NavLink href="/#">Pricing</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      <Link key={"/contact"} href={"/contact"}>
+        <NavLink>Contact Us</NavLink>
+      </Link>
       <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink>
@@ -95,7 +97,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLogoLink = (
     <Link href={"/"}>
       <LogoLink>
-        <img src={logo} alt="logo" />
+        <img src={"https:" + globalSettings.websiteLogo.fields.file.url} alt="logo" />
         MCA Productions
       </LogoLink>
     </Link>
@@ -135,7 +137,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       </MobileNavLinksContainer>
     </Header>
   );
-};
+}
 
 /* The below code is for generating dynamic break points for navbar.
  * Using this you can specify if you want to switch

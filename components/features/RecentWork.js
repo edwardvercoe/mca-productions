@@ -44,7 +44,7 @@ export default function RecentWork({ highlights }) {
   };
 
   return (
-    <Container>
+    <Container id="highlights">
       <ModalVideo channel="youtube" autoplay isOpen={isOpen} videoId={vidID} onClose={() => setOpen(false)} />
 
       <SingleColumn>

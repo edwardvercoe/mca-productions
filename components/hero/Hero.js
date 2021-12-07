@@ -3,9 +3,9 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import ReactPlayer from "react-player";
-
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import Typical from "react-typical";
+import Link from "next/link";
 
 const StyledReactPlayer = styled(ReactPlayer)`
   position: absolute;
@@ -44,7 +44,7 @@ const Heading = styled.h1`
 
 const PrimaryAction = tw.button`rounded-full px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 bg-gray-100 font-bold shadow transition duration-300 bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:outline-none focus:shadow-outline`;
 
-export default function Testimonials({ hero }) {
+export default function Hero({ hero, globalSettings }) {
   if (!hero) return <div>loading...</div>;
 
   let textArray = [];
@@ -54,13 +54,17 @@ export default function Testimonials({ hero }) {
 
   const navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">Highlights</NavLink>
-      <NavLink href="#">Testimonials</NavLink>
-      <NavLink href="#">Team</NavLink>
-      <NavLink href="#">Contact</NavLink>
+      <NavLink href="#highlights">Highlights</NavLink>
+      <NavLink href="#testimonials">Testimonials</NavLink>
+      <NavLink href="#team">Team</NavLink>
+      <Link key={"/contact"} href={"/contact"}>
+        <NavLink>Contact</NavLink>
+      </Link>
     </NavLinks>,
     <NavLinks key={2}>
-      <PrimaryLink href="/#">Hire Us</PrimaryLink>
+      <Link key={"/contact"} href={"/contact"}>
+        <PrimaryLink href="/#">Hire Us</PrimaryLink>
+      </Link>
     </NavLinks>,
   ];
 
@@ -70,7 +74,7 @@ export default function Testimonials({ hero }) {
       <StyledReactPlayer controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
 
       <HeroContainer>
-        <StyledHeader links={navLinks} />
+        <StyledHeader links={navLinks} globalSettings={globalSettings} />
         <Content>
           <Heading>
             {hero.titlePrefix}&nbsp;
