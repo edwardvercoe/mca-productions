@@ -46,8 +46,8 @@ export default function ContactUs({ contact, subheading = "Contact Us", submitBu
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{contact.title}</Heading>
             <Description>{contact.subtitle}</Description>
-            <Form name="contact" action="/success" method="POST" data-netlify="true">
-              <input type="hidden" name="form-name" value="contact" />
+            <Form name="contact" action="/success" method="post" data-netlify="true">
+              <Input type="hidden" name="form-name" value="contact" />
               <Input type="email" name="email" placeholder="Your Email Address" />
               <Input type="text" name="name" placeholder="Full Name" />
               <Input type="text" name="subject" placeholder="Subject" />
