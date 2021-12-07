@@ -13,6 +13,15 @@ const StyledReactPlayer = styled(ReactPlayer)`
   left: 0;
   width: 100%;
   height: 100%;
+  &:after {
+    content: " ";
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
 
 const StyledHeader = styled(Header)`
@@ -27,7 +36,7 @@ const StyledHeader = styled(Header)`
 
 const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`;
 const Container = styled.div`
-  ${tw`relative -mx-8 -mt-8 bg-center bg-cover h-screen min-h-144`}
+  ${tw`relative -mx-8 -mt-8 bg-center bg-cover h-screen min-h-144 bg-black`}
 `;
 
 const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-black opacity-75`;
@@ -41,8 +50,6 @@ const Heading = styled.h1`
     ${tw`inline-block mt-2`}
   }
 `;
-
-const PrimaryAction = tw.button`rounded-full px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 bg-gray-100 font-bold shadow transition duration-300 bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:outline-none focus:shadow-outline`;
 
 export default function Hero({ hero, globalSettings }) {
   if (!hero) return <div>loading...</div>;
@@ -71,7 +78,7 @@ export default function Hero({ hero, globalSettings }) {
   return (
     <Container>
       <OpacityOverlay />
-      <StyledReactPlayer controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
+      <StyledReactPlayer className="anim-slide-out-top" controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
 
       <HeroContainer>
         <StyledHeader links={navLinks} globalSettings={globalSettings} />

@@ -18,8 +18,60 @@ const HeadingDescription = tw.p`mt-4 font-medium text-gray-600 text-center max-w
 
 const Content = tw.div`mt-16`;
 
-const Card = styled.div((props) => [tw`mt-24 md:flex justify-center items-center`, props.reversed ? tw`flex-row-reverse` : "flex-row"]);
-const Image = styled.div((props) => [`background-image: url("${props.imageSrc}");`, tw`cursor-pointer	rounded md:w-1/2 lg:w-5/12 xl:w-1/3 flex-shrink-0 h-80 md:h-144 bg-contain bg-no-repeat bg-center mx-4 sm:mx-8 md:mx-4 lg:mx-8`]);
+const Card = styled.div((props) => [tw`mt-24 md:flex relative justify-center items-center`, props.reversed ? tw`flex-row-reverse` : "flex-row"]);
+const Image = styled.div((props) => [
+  `
+background-image: url("${props.imageSrc}");
+-moz-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+-webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+transition: 0.25s all ease;
+
+&:before {
+  transition: 0.25s all ease;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: black;
+  opacity: 0;
+
+}
+
+&:after {
+  transition: 0.1s all ease;
+  content: "▶";
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fcfcfc;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 5px solid #fcfcfc;
+  line-height: 1;
+  padding: 20px 15px 20px 25px;
+  border-radius: 50%;
+  -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+&:hover {
+  &::before {
+    opacity: 0.25;
+}
+&::after {
+  font-size: 4rem;
+}
+}
+
+`,
+  tw`cursor-pointer relative	rounded md:w-1/2 lg:w-5/12 xl:w-1/3 flex-shrink-0 h-80 md:h-144 bg-cover bg-no-repeat bg-center mx-4 sm:mx-8 md:mx-4 lg:mx-8`,
+]);
 const Details = tw.div`mt-4 md:mt-0 md:max-w-md mx-4 sm:mx-8 md:mx-4 lg:mx-8`;
 const Subtitle = tw.div`font-bold tracking-wide text-secondary-100`;
 const Title = tw.h4`text-3xl font-bold text-gray-900`;

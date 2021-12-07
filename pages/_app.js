@@ -15,7 +15,10 @@ const StyledArrow = styled(ArrowIcon)`
   border-radius: 0.25rem;
   background-color: #fcfcfc;
   transform: rotate(90deg);
+  -moz-box-shadow: rgba(0, 0, 0, 0.35) 2px 0px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 2px 0px 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 2px 0px 5px;
+
   padding: 7px;
 `;
 

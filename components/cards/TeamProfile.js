@@ -20,6 +20,9 @@ const CardImage = styled.div`
   ${(props) =>
     css`
       background-image: url("${props.imageSrc}");
+      -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     `}
   ${tw`w-64 h-64 bg-contain bg-center rounded`}
 `;

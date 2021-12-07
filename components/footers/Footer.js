@@ -40,7 +40,7 @@ export default function Footer({ globalSettings }) {
           <LinksContainer>
             <Link href="/">Home</Link>
 
-            <Link href="/contact">Contact Us</Link>
+            <Link href="/contact">Contact</Link>
           </LinksContainer>
           <SocialLinksContainer>
             <SocialLink href={globalSettings.instagramUrl} target="_blank">

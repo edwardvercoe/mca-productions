@@ -14,6 +14,7 @@ const TextColumn = styled(Column)((props) => [tw`md:w-7/12 mt-16 md:mt-0`, props
 
 const Image = styled.div((props) => [
   `background-image: url("${props.imageSrc}"); clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
 `,
   tw`rounded bg-contain bg-no-repeat bg-center h-full`,
 ]);
@@ -45,7 +46,9 @@ export default function ContactUs({ contact, subheading = "Contact Us", submitBu
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{contact.title}</Heading>
             <Description>{contact.subtitle}</Description>
-            <Form action={formAction} method={formMethod}>
+            <Form name="contact" method="POST" data-netlify="true" netlify>
+              <input type="hidden" name="form-name" value="contact" />
+
               <Input type="email" name="email" placeholder="Your Email Address" />
               <Input type="text" name="name" placeholder="Full Name" />
               <Input type="text" name="subject" placeholder="Subject" />
