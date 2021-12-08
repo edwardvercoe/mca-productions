@@ -20,7 +20,7 @@ export default function Home({ highlights, team, contact, testimonials, hero, gl
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const highlightData = await fetchRecentWork({ content_type: "homeHighlightWork" });
   const stringifiedHighlight = safeJsonStringify(highlightData);
   const highlights = JSON.parse(stringifiedHighlight);
@@ -54,5 +54,6 @@ export async function getServerSideProps() {
       hero: hero[0].fields,
       globalSettings: globalSettings[0].fields,
     },
+    revalidate: 5, // In seconds
   };
 }

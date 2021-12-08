@@ -25,7 +25,7 @@ export default function Success({ globalSettings }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const globalData = await fetchRecentWork({ content_type: "globalHeaderfooter" });
   const stringifiedGlobal = safeJsonStringify(globalData);
   const globalSettings = JSON.parse(stringifiedGlobal);
@@ -34,5 +34,6 @@ export async function getServerSideProps() {
     props: {
       globalSettings: globalSettings[0].fields,
     },
+    revalidate: 5, // In seconds
   };
 }
