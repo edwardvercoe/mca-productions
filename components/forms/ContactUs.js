@@ -46,8 +46,8 @@ export default function ContactUs({ contact, subheading = "Contact Us", submitBu
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{contact.title}</Heading>
             <Description>{contact.subtitle}</Description>
-            <Form name="contact" method="POST" data-netlify="true" action="/success">
-              <Input type="hidden" name="form-name" value="contact" />
+            <Form action="https://formkeep.com/f/3cbb0aa9596b" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+              <input type="hidden" name="utf8" value="✓" />
               <Input type="email" name="email" placeholder="Your Email Address" />
               <Input type="text" name="name" placeholder="Full Name" />
               <Input type="text" name="subject" placeholder="Subject" />

@@ -57,6 +57,7 @@ transition: 0.25s all ease;
   -moz-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  opacity: 0.5;
 
 }
 
@@ -66,6 +67,7 @@ transition: 0.25s all ease;
 }
 &::after {
   font-size: 4rem;
+  opacity: 1;
 }
 }
 
