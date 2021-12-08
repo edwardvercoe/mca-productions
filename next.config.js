@@ -1,6 +1,7 @@
 module.exports = {
+  webpack5: false,
   future: {
-    webpack5: true,
+    webpack5: false,
   },
   target: "serverless",
   webpack: (config, { isServer }) => {
@@ -9,6 +10,9 @@ module.exports = {
       config.node = {
         fs: "empty",
         module: "empty",
+        dns: "mock",
+        path: true,
+        url: false,
       };
     }
 
