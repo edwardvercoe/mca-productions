@@ -106,7 +106,7 @@ export default function Gallery({ gallery }) {
             {galleryItems.map((item, index) => (
               <GalleryItem key={index}>
                 <TextContainer>
-                  <Title>Option {item.fields.heading}</Title>
+                  <Title>{item.fields.heading}</Title>
                 </TextContainer>
                 <ImageContainer>
                   <img src={"https:" + item.fields.thumbnailImage.fields.file.url} alt={""} />
