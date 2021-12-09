@@ -34,18 +34,20 @@ const StyledHeader = styled(Header)`
   }
 `;
 
-const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`;
 const Container = styled.div`
   ${tw`relative -mx-8 -mt-8 bg-center bg-cover h-screen min-h-144 bg-black`}
 `;
 
-const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-black opacity-75`;
+const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-black opacity-0`;
 
 const HeroContainer = tw.div`z-20 relative px-6 sm:px-8 mx-auto h-full flex flex-col`;
 const Content = tw.div`px-4 flex flex-1 flex-col justify-center `;
 
 const Heading = styled.h1`
+  margin-top: auto !important;
+  margin-bottom: 100px;
   ${tw`text-3xl  sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-100 leading-snug -mt-24 sm:mt-0`}
+
   span {
     ${tw`inline-block mt-2`}
   }
@@ -83,7 +85,6 @@ export default function Hero({ hero, globalSettings }) {
             <br />
             <Typical steps={textArray} loop={Infinity} wrapper="span" />
           </Heading>
-          {/* <PrimaryAction>Find out more</PrimaryAction> */}
         </Content>
       </HeroContainer>
     </Container>
