@@ -21,6 +21,10 @@ const ContactContainer = styled.div`
   white-space: nowrap;
   margin-top: 20px;
 
+  a {
+    ${tw`transition duration-300 border-b-2 border-transparent hocus:text-gray-300 hocus:border-gray-300 `}
+  }
+
   svg {
     width: 20px;
     height: 20px;
@@ -52,7 +56,7 @@ export default function Footer({ globalSettings }) {
           </LinksContainer>
           <ContactContainer>
             <PhoneIcon />
-            <p>{globalSettings.mobileNumber}</p>
+            <a href={"tel:" + globalSettings.mobileNumber}>{globalSettings.mobileNumber}</a>
           </ContactContainer>
           <SocialLinksContainer>
             <SocialLink href={globalSettings.instagramUrl} target="_blank">

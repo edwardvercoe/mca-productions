@@ -38,6 +38,7 @@ const Column = styled.div`
 const Card = styled.div`
   ${tw`flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left h-full mx-4 px-2 py-8`}
   .imageContainer {
+    border-color: #6415ff;
     ${tw`border text-center rounded-full p-5 flex-shrink-0`}
     img {
       ${tw`w-12 h-12`}

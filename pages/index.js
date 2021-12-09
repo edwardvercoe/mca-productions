@@ -3,16 +3,18 @@ import Testimonial from "components/testimonials/Testimonials.js";
 import ContactUsForm from "components/forms/ContactUs.js";
 import RecentWork from "components/features/RecentWork.js";
 import Team from "components/cards/TeamProfile";
+import Gallery from "components/features/Gallery";
 import Services from "components/features/Services";
 import Footer from "components/footers/Footer";
 import { fetchRecentWork } from "../contentful/fetchData";
 import safeJsonStringify from "safe-json-stringify";
 
-export default function Home({ highlights, team, contact, testimonials, hero, globalSettings, services }) {
+export default function Home({ highlights, team, contact, testimonials, hero, globalSettings, services, gallery }) {
   return (
     <>
       <Hero hero={hero} globalSettings={globalSettings} />
       <RecentWork highlights={highlights} />
+      <Gallery gallery={gallery} />
       <Testimonial testimonials={testimonials} />
       <Team team={team} />
       <Services services={services} />
@@ -51,6 +53,10 @@ export async function getServerSideProps() {
   const stringifiedServices = safeJsonStringify(servicesData);
   const services = JSON.parse(stringifiedServices);
 
+  const galleryData = await fetchRecentWork({ content_type: "galleryBlock" });
+  const stringifiedGallery = safeJsonStringify(galleryData);
+  const gallery = JSON.parse(stringifiedGallery);
+
   return {
     props: {
       highlights: highlights[0].fields,
@@ -59,6 +65,7 @@ export async function getServerSideProps() {
       testimonials: testimonials[0].fields,
       hero: hero[0].fields,
       services: services[0].fields,
+      gallery: gallery[0].fields,
       globalSettings: globalSettings[0].fields,
     },
   };
