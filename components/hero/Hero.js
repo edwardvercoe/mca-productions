@@ -26,7 +26,6 @@ const StyledReactPlayer = styled(ReactPlayer)`
 
 const StyledTypical = styled(Typical)`
   background-color: rgba(255, 255, 255, 0.2);
-  text-shadow: none !important;
   ${tw`font-black`}
 `;
 

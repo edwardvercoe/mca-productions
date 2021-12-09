@@ -23,8 +23,10 @@ const Container = tw.div`relative`;
 const ThreeColumnContainer = styled.div`
   ${tw`flex flex-col items-center md:items-stretch md:flex-row flex-wrap md:justify-center max-w-screen-lg mx-auto py-20 md:py-24`}
 `;
-const Subheading = tw(SubheadingBase)`mb-4`;
-const Heading = tw(SectionHeading)`w-full`;
+const Heading = styled(SectionHeading)`
+  ${tw`w-full `}
+`;
+
 const Description = tw(SectionDescription)`w-full text-center`;
 
 const VerticalSpacer = tw.div`mt-10 w-full`;
@@ -38,7 +40,7 @@ const Card = styled.div`
   .imageContainer {
     ${tw`border text-center rounded-full p-5 flex-shrink-0`}
     img {
-      ${tw`w-6 h-6`}
+      ${tw`w-12 h-12`}
     }
   }
 
@@ -47,7 +49,7 @@ const Card = styled.div`
   }
 
   .title {
-    ${tw`mt-4 tracking-wide font-bold text-2xl leading-none`}
+    ${tw`mt-4 tracking-wide font-bold text-xl leading-none`}
   }
 
   .description {
@@ -59,28 +61,7 @@ const DecoratorBlob = styled(SvgDecoratorBlob3)`
   ${tw`pointer-events-none absolute right-0 bottom-0 w-64 opacity-25 transform translate-x-32 translate-y-48 `}
 `;
 
-export default function Hero({ services, heading = "Amazing Features", subheading = "Features", description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }) {
-  /*
-   * This componets has an array of object denoting the cards defined below. Each object in the cards array can have the key (Change it according to your need, you can also add more objects to have more cards in this feature component) or you can directly pass this using the cards prop:
-   *  1) imageSrc - the image shown at the top of the card
-   *  2) title - the title of the card
-   *  3) description - the description of the card
-   *  If a key for a particular card is not provided, a default value is used
-   */
-
-  const defaultCards = [
-    {
-      imageSrc: ShieldIconImage,
-      title: "Secure",
-      description: "We strictly only deal with vendors that provide top notch security.",
-    },
-    { imageSrc: SupportIconImage, title: "24/7 Support" },
-    { imageSrc: CustomizeIconImage, title: "Customizable" },
-    { imageSrc: ReliableIconImage, title: "Reliable" },
-    { imageSrc: FastIconImage, title: "Fast" },
-    { imageSrc: SimpleIconImage, title: "Easy" },
-  ];
-
+export default function Hero({ services }) {
   const cards = services.services;
 
   return (
@@ -94,11 +75,11 @@ export default function Hero({ services, heading = "Amazing Features", subheadin
           <Column key={i}>
             <Card>
               <span className="imageContainer">
-                <img src={defaultCardImage || defaultCardImage} alt="" />
+                <img src={card.fields.icon ? "https:" + card.fields.icon.fields.file.url : defaultCardImage} alt="" />
               </span>
               <span className="textContainer">
                 <span className="title">{card.fields.heading || "Fully Secure"}</span>
-                <div className="description">{documentToReactComponents(card.fields.description) || "Lorem ipsum donor amet siti ceali ut enim ad minim veniam, quis nostrud."}</div>
+                <div className="description">{documentToReactComponents(card.fields.description) || ""}</div>
               </span>
             </Card>
           </Column>
