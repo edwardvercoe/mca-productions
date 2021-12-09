@@ -30,6 +30,8 @@ const CardContent = styled.div`
   ${tw`flex flex-col items-center mt-6`}
   .position {
     ${tw`uppercase font-bold tracking-widest text-xs text-primary-500`}
+    text-align: center;
+    max-width: 320px;
   }
   .name {
     ${tw`mt-1 text-xl font-medium text-gray-900`}
@@ -65,13 +67,6 @@ export default function Team({ team, heading = "Meet These Fine Folks.", subhead
               <CardContent>
                 <span className="position">{card.fields.workTitle}</span>
                 <span className="name">{card.fields.name}</span>
-                {/* <CardLinks>
-                  {card.links.map((link, linkIndex) => (
-                    <a key={linkIndex} className="link" href={link.url}>
-                      <link.icon className="icon" />
-                    </a>
-                  ))}
-                </CardLinks> */}
               </CardContent>
             </Card>
           ))}

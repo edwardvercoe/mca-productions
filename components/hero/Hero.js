@@ -68,11 +68,6 @@ export default function Hero({ hero, globalSettings }) {
         <NavLink>Contact</NavLink>
       </Link>
     </NavLinks>,
-    <NavLinks key={2}>
-      <Link key={"/contact"} href={"/contact"}>
-        <PrimaryLink href="/#">Hire Us</PrimaryLink>
-      </Link>
-    </NavLinks>,
   ];
 
   return (

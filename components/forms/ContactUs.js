@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
-// import EmailIllustrationSrc from "https://images.unsplash.com/photo-1550699026-4114bbf4fb49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -45,7 +45,7 @@ export default function ContactUs({ contact, subheading = "Contact Us", submitBu
           <TextContent>
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{contact.title}</Heading>
-            <Description>{contact.subtitle}</Description>
+            <Description>{documentToReactComponents(contact.description)}</Description>
             <Form action="https://formkeep.com/f/3cbb0aa9596b" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
               <input type="hidden" name="utf8" value="✓" />
               <Input type="email" name="email" placeholder="Your Email Address" />
