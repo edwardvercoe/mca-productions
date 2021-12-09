@@ -83,8 +83,6 @@ export default function Hero({ services, heading = "Amazing Features", subheadin
 
   const cards = services.services;
 
-  console.log(services);
-
   return (
     <Container>
       <ThreeColumnContainer>

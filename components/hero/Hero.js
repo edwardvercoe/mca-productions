@@ -24,6 +24,12 @@ const StyledReactPlayer = styled(ReactPlayer)`
   }
 `;
 
+const StyledTypical = styled(Typical)`
+  background-color: rgba(255, 255, 255, 0.2);
+  text-shadow: none !important;
+  ${tw`font-black`}
+`;
+
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
   ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
@@ -46,7 +52,9 @@ const Content = tw.div`px-4 flex flex-1 flex-col justify-center `;
 const Heading = styled.h1`
   margin-top: auto !important;
   margin-bottom: 100px;
-  ${tw`text-3xl  sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-100 leading-snug -mt-24 sm:mt-0`}
+
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+  ${tw`text-3xl  sm:text-4xl lg:text-5xl xl:text-6xl text-gray-100 leading-snug -mt-24 sm:mt-0 font-medium`}
 
   span {
     ${tw`inline-block mt-2`}
@@ -83,7 +91,7 @@ export default function Hero({ hero, globalSettings }) {
           <Heading>
             {hero.titlePrefix}&nbsp;
             <br />
-            <Typical steps={textArray} loop={Infinity} wrapper="span" />
+            <StyledTypical steps={textArray} loop={Infinity} wrapper="span" />
           </Heading>
         </Content>
       </HeroContainer>
