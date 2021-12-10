@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-
+import Link from "next/link";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
@@ -28,17 +28,32 @@ const TestimonialSliderContainer = styled.div`
 `;
 
 const TestimonialSlider = styled(Slider)`
-  .slick-center {
-    transform: scale(1.1);
-    transition: all 0.3s ease;
+  &:hover {
+    &:not(.slick-center) {
+      .slick-center {
+        opacity: 0.4;
+      }
+    }
   }
-
   .slick-slide {
     opacity: 0;
     transition: all 0.3s ease;
   }
   .slick-active {
+    opacity: 0.4;
+    cursor: grab;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .slick-center {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
     opacity: 1;
+    &:hover {
+      opacity: 1 !important;
+      cursor: pointer;
+    }
   }
 `;
 const GalleryItem = styled.div`
@@ -47,7 +62,7 @@ const GalleryItem = styled.div`
   ${tw`flex! flex-col items-center md:items-stretch md:justify-center outline-none`}
 `;
 const ImageContainer = styled.div`
-  background-color: rgba(255, 255, 100, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   ${tw`rounded`}
   margin: 20px 0;
 
@@ -59,7 +74,9 @@ const ImageContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 `;
-const TextContainer = styled.div``;
+const TextContainer = styled.div`
+  text-align: center;
+`;
 
 const Description = tw(SectionDescription)`w-full text-center`;
 
@@ -91,7 +108,6 @@ export default function Gallery({ gallery }) {
     autoplaySpeed: 4000,
     autoplay: true,
   };
-  console.log(gallery);
 
   return (
     <Container>
@@ -104,14 +120,16 @@ export default function Gallery({ gallery }) {
         <TestimonialSliderContainer>
           <TestimonialSlider {...settings}>
             {galleryItems.map((item, index) => (
-              <GalleryItem key={index}>
-                <TextContainer>
-                  <Title>{item.fields.heading}</Title>
-                </TextContainer>
-                <ImageContainer>
-                  <img src={"https:" + item.fields.thumbnailImage.fields.file.url} alt={""} />
-                </ImageContainer>
-              </GalleryItem>
+              <Link href={`/gallery/${item.fields.slug}`}>
+                <GalleryItem key={index}>
+                  <TextContainer>
+                    <Title>{item.fields.heading}</Title>
+                  </TextContainer>
+                  <ImageContainer>
+                    <img src={"https:" + item.fields.thumbnailImage.fields.file.url} alt={""} />
+                  </ImageContainer>
+                </GalleryItem>
+              </Link>
             ))}
           </TestimonialSlider>
         </TestimonialSliderContainer>

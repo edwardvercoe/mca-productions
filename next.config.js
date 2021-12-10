@@ -3,6 +3,9 @@ module.exports = {
   future: {
     webpack5: false,
   },
+  images: {
+    domains: ["images.ctfassets.net", "source.unsplash.com"],
+  },
   target: "serverless",
   webpack: (config, { isServer }) => {
     // Fixes npm packages that depend on `fs` module
