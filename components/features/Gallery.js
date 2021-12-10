@@ -30,14 +30,13 @@ const TestimonialSliderContainer = styled.div`
 const TestimonialSlider = styled(Slider)`
   &:hover {
     &:not(.slick-center) {
-      .slick-center {
-        opacity: 0.4;
-      }
+      cursor: grab;
     }
   }
   .slick-slide {
     opacity: 0;
     transition: all 0.3s ease;
+    pointer-events: none;
   }
   .slick-active {
     opacity: 0.4;
@@ -50,9 +49,33 @@ const TestimonialSlider = styled(Slider)`
     transform: scale(1.1);
     transition: all 0.3s ease;
     opacity: 1;
+    pointer-events: visible;
+
+    h4 {
+      transition: all 0.3s ease;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        transition: all 0.3s ease;
+      }
+    }
+
     &:hover {
       opacity: 1 !important;
       cursor: pointer;
+      h4 {
+        position: relative;
+        display: inline-block;
+        color: #6415ff;
+        &:after {
+          background-color: #6415ff;
+        }
+      }
     }
   }
 `;
