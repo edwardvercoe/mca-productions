@@ -27,6 +27,7 @@ background-image: url("${props.imageSrc}");
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 transition: 0.25s all ease;
 
+
 &:before {
   transition: 0.25s all ease;
   content: "";
@@ -62,6 +63,7 @@ transition: 0.25s all ease;
 }
 
 &:hover {
+  transform: scale(1.03);
   &::before {
     opacity: 0.25;
 }

@@ -17,10 +17,25 @@ const client = createClient({
   accessToken: accessToken,
 });
 
+const GalleryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 767px) {
+    display: block;
+  }
+`;
+
 const HeadingInfoContainer = tw.div`flex flex-col items-center mt-20`;
 
 const ImageContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
+  flex: 50%;
+  padding: 0 5px;
+
+  @media (max-width: 767px) {
+    flex: 1 0 0;
+    flex-direction: column;
+  }
+
   ${tw`rounded`}
   margin: 60px 0;
   position: relative;
@@ -35,7 +50,6 @@ const ImageContainer = styled.div`
 `;
 
 export default function ClientDetails({ gallery, globalSettings }) {
-  console.log(gallery);
   if (!gallery) return <div>Loading...</div>;
   const galleryImages = gallery.images;
 
@@ -46,7 +60,7 @@ export default function ClientDetails({ gallery, globalSettings }) {
       <HeadingInfoContainer>
         <HeadingTitle>{gallery.heading}</HeadingTitle>
       </HeadingInfoContainer>
-      <div>
+      <GalleryContainer>
         {galleryImages.map((item, index) => {
           return (
             <ImageContainer>
@@ -54,7 +68,7 @@ export default function ClientDetails({ gallery, globalSettings }) {
             </ImageContainer>
           );
         })}
-      </div>
+      </GalleryContainer>
       <Footer globalSettings={globalSettings} />
     </>
   );

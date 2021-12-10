@@ -21,7 +21,12 @@ const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24 `;
 const HeadingInfoContainer = tw.div`flex flex-col items-center`;
 const HeadingDescription = tw.p`mt-4 font-medium text-gray-600 text-center max-w-sm`;
 
-const Title = tw.h4`text-3xl font-bold text-gray-900`;
+const Title = styled.h4`
+  ${tw`text-3xl font-bold text-gray-900`}
+  @media (max-width: 784px) {
+    ${tw`text-2xl`}
+  }
+`;
 
 const TestimonialSliderContainer = styled.div`
   ${tw`mt-24`}
@@ -33,6 +38,11 @@ const TestimonialSlider = styled(Slider)`
       cursor: grab;
     }
   }
+
+  .slick-list {
+    overflow: visible;
+  }
+
   .slick-slide {
     opacity: 0;
     transition: all 0.3s ease;
@@ -68,6 +78,7 @@ const TestimonialSlider = styled(Slider)`
     &:hover {
       opacity: 1 !important;
       cursor: pointer;
+      transform: scale(1.13);
       h4 {
         position: relative;
         display: inline-block;
@@ -81,8 +92,10 @@ const TestimonialSlider = styled(Slider)`
 `;
 const GalleryItem = styled.div`
   padding: 20px;
-  /* border: 1px dotted red; */
-  ${tw`flex! flex-col items-center md:items-stretch md:justify-center outline-none`}
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+  ${tw`flex! flex-col items-center md:items-stretch md:justify-center outline-none `}
 `;
 const ImageContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
@@ -127,9 +140,20 @@ export default function Gallery({ gallery }) {
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
+    slidesToScroll: 3,
     speed: 500,
     autoplaySpeed: 4000,
     autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
   };
 
   return (
