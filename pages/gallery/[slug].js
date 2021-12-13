@@ -82,11 +82,13 @@ export default function ClientDetails({ gallery, globalSettings }) {
           <HeadingTitle>{gallery.heading}</HeadingTitle>
         </HeadingInfoContainer>
         <VideoContainer>
-          {gallery.videos.map((item, index) => (
-            <PlayerWrapper>
-              <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
-            </PlayerWrapper>
-          ))}
+          {gallery.videos
+            ? gallery.videos.map((item, index) => (
+                <PlayerWrapper>
+                  <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
+                </PlayerWrapper>
+              ))
+            : null}
         </VideoContainer>
         <GalleryContainer>
           {galleryImages.map((item, index) => {
