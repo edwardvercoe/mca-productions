@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading as HeadingTitle } from "../misc/Headings.js";
-import { ReactComponent as QuotesLeftIcon } from "../../images/quotes-l.svg";
-import { ReactComponent as QuotesRightIcon } from "../../images/quotes-r.svg";
-import { ReactComponent as ArrowLeftIcon } from "../../images/arrow-left-2-icon.svg";
-import { ReactComponent as ArrowRightIcon } from "../../images/arrow-right-2-icon.svg";
+import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
+import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { SectionDescription } from "components/misc/Typography.js";
+import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 
 // import "slick-carousel/slick/slick.css";
 
@@ -20,6 +19,16 @@ const Container = tw.div`relative `;
 const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24 `;
 const HeadingInfoContainer = tw.div`flex flex-col items-center`;
 const HeadingDescription = tw.p`mt-4 font-medium text-gray-600 text-center max-w-sm`;
+
+const Controls = tw.div`flex items-center justify-center mt-20`;
+const ControlButton = styled(PrimaryButtonBase)`
+  ${tw`mt-4 sm:mt-0 first:ml-0 ml-6 rounded-full p-2`}
+  svg {
+    ${tw`w-6 h-6`}
+  }
+`;
+const PrevButton = tw(ControlButton)``;
+const NextButton = tw(ControlButton)``;
 
 const Title = styled.h4`
   ${tw`text-3xl font-bold text-gray-900`}
@@ -33,6 +42,8 @@ const TestimonialSliderContainer = styled.div`
 `;
 
 const TestimonialSlider = styled(Slider)`
+  display: flex;
+  flex-direction: column;
   &:hover {
     &:not(.slick-center) {
       cursor: grab;
@@ -41,6 +52,15 @@ const TestimonialSlider = styled(Slider)`
 
   .slick-list {
     overflow: visible;
+    order: -1;
+  }
+  .slick-next,
+  .slick-prev {
+    top: 0;
+    left: 0;
+  }
+
+  .slick-slider {
   }
 
   .slick-slide {
@@ -112,17 +132,21 @@ const ImageContainer = styled.div`
 `;
 const TextContainer = styled.div`
   text-align: center;
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
 `;
 
 const Description = tw(SectionDescription)`w-full text-center`;
 
-const QuotesLeft = tw(QuotesLeftIcon)`w-8 h-8 lg:w-10 lg:h-10 text-primary-500 absolute top-0 left-0`;
-const QuotesRight = tw(QuotesRightIcon)`w-8 h-8 lg:w-10 lg:h-10 text-primary-500 absolute bottom-0 right-0`;
-
 const SliderControlButtonContainer = styled.div`
-  ${tw`absolute top-0 h-full flex items-end md:items-center z-20`}
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: pink;
   button {
-    ${tw`text-secondary-500 hover:text-primary-500 focus:outline-none transition duration-300 transform hover:scale-125 transform -translate-y-2/3 md:translate-y-0`}
+    ${tw`text-secondary-500 hover:text-primary-500 focus:outline-none transition duration-300 transform hover:scale-125 transform `}
     svg {
       ${tw`w-8`}
     }
@@ -140,10 +164,11 @@ export default function Gallery({ gallery }) {
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     speed: 500,
     autoplaySpeed: 4000,
     autoplay: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -155,6 +180,14 @@ export default function Gallery({ gallery }) {
       },
     ],
   };
+  const [sliderRef, setSliderRef] = useState(null);
+
+  const next = function () {
+    slider.slickNext();
+  };
+  const previous = function () {
+    slider.slickPrev();
+  };
 
   return (
     <Container>
@@ -165,10 +198,10 @@ export default function Gallery({ gallery }) {
           <HeadingDescription></HeadingDescription>
         </HeadingInfoContainer>
         <TestimonialSliderContainer>
-          <TestimonialSlider {...settings}>
+          <TestimonialSlider ref={setSliderRef} {...settings}>
             {galleryItems.map((item, index) => (
-              <Link href={`/gallery/${item.fields.slug}`}>
-                <GalleryItem key={index}>
+              <Link key={index} href={`/gallery/${item.fields.slug}`}>
+                <GalleryItem>
                   <TextContainer>
                     <Title>{item.fields.heading}</Title>
                   </TextContainer>
@@ -179,6 +212,14 @@ export default function Gallery({ gallery }) {
               </Link>
             ))}
           </TestimonialSlider>
+          <Controls>
+            <PrevButton onClick={sliderRef?.slickPrev}>
+              <ChevronLeftIcon />
+            </PrevButton>
+            <NextButton onClick={sliderRef?.slickNext}>
+              <ChevronRightIcon />
+            </NextButton>
+          </Controls>
         </TestimonialSliderContainer>
       </Content>
       <DecoratorBlob1 />

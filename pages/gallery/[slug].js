@@ -8,6 +8,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading as HeadingTitle } from "components/misc/Headings";
+import ReactPlayer from "react-player";
 
 const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
 const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
@@ -16,6 +17,10 @@ const client = createClient({
   space: space,
   accessToken: accessToken,
 });
+const PageContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1440px;
+`;
 
 const GalleryContainer = styled.div`
   display: flex;
@@ -48,27 +53,51 @@ const ImageContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 `;
+const VideoContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+const StyledReactPlayer = styled(ReactPlayer)`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+const PlayerWrapper = styled.div`
+  position: relative;
+  margin: 60px 0;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+`;
 
 export default function ClientDetails({ gallery, globalSettings }) {
   if (!gallery) return <div>Loading...</div>;
   const galleryImages = gallery.images;
+  console.log(gallery);
 
   return (
     <>
       <Navbar globalSettings={globalSettings} />
 
-      <HeadingInfoContainer>
-        <HeadingTitle>{gallery.heading}</HeadingTitle>
-      </HeadingInfoContainer>
-      <GalleryContainer>
-        {galleryImages.map((item, index) => {
-          return (
-            <ImageContainer>
-              <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
-            </ImageContainer>
-          );
-        })}
-      </GalleryContainer>
+      <PageContainer>
+        <HeadingInfoContainer>
+          <HeadingTitle>{gallery.heading}</HeadingTitle>
+        </HeadingInfoContainer>
+        <VideoContainer>
+          {gallery.videos.map((item, index) => (
+            <PlayerWrapper>
+              <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
+            </PlayerWrapper>
+          ))}
+        </VideoContainer>
+        <GalleryContainer>
+          {galleryImages.map((item, index) => {
+            return (
+              <ImageContainer>
+                <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
+              </ImageContainer>
+            );
+          })}
+        </GalleryContainer>
+      </PageContainer>
       <Footer globalSettings={globalSettings} />
     </>
   );
