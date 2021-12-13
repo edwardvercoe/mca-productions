@@ -37,10 +37,8 @@ export default function Navbar({ globalSettings }) {
   const navLinks = [
     <NavLinks key={1}>
       <NavLink href="/">Home</NavLink>
-      <NavLink href="/contact">Contact Us</NavLink>
-    </NavLinks>,
-    <NavLinks key={2}>
-      <PrimaryLink href="/contact">Hire Us</PrimaryLink>
+      <NavLink href="/gallery">Gallery</NavLink>
+      <NavLink href="/contact">Contact</NavLink>
     </NavLinks>,
   ];
 

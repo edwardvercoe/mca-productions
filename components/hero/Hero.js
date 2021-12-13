@@ -70,9 +70,9 @@ export default function Hero({ hero, globalSettings }) {
 
   const navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#highlights">Highlights</NavLink>
-      <NavLink href="#testimonials">Testimonials</NavLink>
-      <NavLink href="#team">Team</NavLink>
+      <Link key={"/gallery"} href={"/gallery"}>
+        <NavLink>Gallery</NavLink>
+      </Link>
       <Link key={"/contact"} href={"/contact"}>
         <NavLink>Contact</NavLink>
       </Link>

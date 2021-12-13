@@ -20,7 +20,7 @@ const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24 `;
 const HeadingInfoContainer = tw.div`flex flex-col items-center`;
 const HeadingDescription = tw.p`mt-4 font-medium text-gray-600 text-center max-w-sm`;
 
-const Controls = tw.div`flex items-center justify-center mt-20`;
+const Controls = tw.div`flex items-center justify-center mt-10`;
 const ControlButton = styled(PrimaryButtonBase)`
   ${tw`mt-4 sm:mt-0 first:ml-0 ml-6 rounded-full p-2`}
   svg {
@@ -46,7 +46,6 @@ const TestimonialSlider = styled(Slider)`
   flex-direction: column;
   &:hover {
     &:not(.slick-center) {
-      cursor: grab;
     }
   }
 
@@ -169,6 +168,7 @@ export default function Gallery({ gallery }) {
     autoplaySpeed: 4000,
     autoplay: true,
     arrows: false,
+    draggable: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -181,13 +181,6 @@ export default function Gallery({ gallery }) {
     ],
   };
   const [sliderRef, setSliderRef] = useState(null);
-
-  const next = function () {
-    slider.slickNext();
-  };
-  const previous = function () {
-    slider.slickPrev();
-  };
 
   return (
     <Container>

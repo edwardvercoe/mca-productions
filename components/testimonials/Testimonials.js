@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 
 import styled from "styled-components";
@@ -7,11 +7,14 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading as HeadingTitle } from "../misc/Headings.js";
 import { ReactComponent as QuotesLeftIcon } from "../../images/quotes-l.svg";
 import { ReactComponent as QuotesRightIcon } from "../../images/quotes-r.svg";
-import { ReactComponent as ArrowLeftIcon } from "../../images/arrow-left-2-icon.svg";
-import { ReactComponent as ArrowRightIcon } from "../../images/arrow-right-2-icon.svg";
+
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
+import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
+import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
+import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 
 // import "slick-carousel/slick/slick.css";
 
@@ -54,20 +57,15 @@ const SliderControlButtonContainer = styled.div`
   }
 `;
 
-const NextArrow = ({ currentSlide, slideCount, ...props }) => (
-  <SliderControlButtonContainer tw="right-0">
-    <button {...props}>
-      <ArrowRightIcon />
-    </button>
-  </SliderControlButtonContainer>
-);
-const PreviousArrow = ({ currentSlide, slideCount, ...props }) => (
-  <SliderControlButtonContainer tw="left-0">
-    <button {...props}>
-      <ArrowLeftIcon />
-    </button>
-  </SliderControlButtonContainer>
-);
+const Controls = tw.div`flex items-center justify-center mt-10`;
+const ControlButton = styled(PrimaryButtonBase)`
+  ${tw`mt-4 sm:mt-0 first:ml-0 ml-6 rounded-full p-2`}
+  svg {
+    ${tw`w-6 h-6`}
+  }
+`;
+const PrevButton = tw(ControlButton)``;
+const NextButton = tw(ControlButton)``;
 
 const DecoratorBlob1 = tw(SvgDecoratorBlob1)`absolute w-32 top-0 left-0 -z-10 text-primary-500 opacity-25 transform -translate-x-full`;
 const DecoratorBlob2 = tw(SvgDecoratorBlob2)`absolute w-32 bottom-0 right-0 -z-10 text-pink-500 opacity-15 transform translate-x-2/3 translate-y-8`;
@@ -75,6 +73,7 @@ const DecoratorBlob2 = tw(SvgDecoratorBlob2)`absolute w-32 bottom-0 right-0 -z-1
 export default function Testimonials({ testimonials }) {
   if (!testimonials) return <div>loading...</div>;
   const testimonialSingle = testimonials.testimonials;
+  const [sliderRef, setSliderRef] = useState(null);
 
   return (
     <Container id="testimonials">
@@ -84,7 +83,7 @@ export default function Testimonials({ testimonials }) {
           <HeadingDescription></HeadingDescription>
         </HeadingInfoContainer>
         <TestimonialSliderContainer>
-          <TestimonialSlider autoplaySpeed={10000} infinite={true} autoplay={true} nextArrow={<NextArrow />} prevArrow={<PreviousArrow />}>
+          <TestimonialSlider ref={setSliderRef} autoplaySpeed={10000} infinite={true} autoplay={true}>
             {testimonialSingle.map((testimonial, index) => (
               <Testimonial key={index}>
                 <ImageContainer>
@@ -104,6 +103,14 @@ export default function Testimonials({ testimonials }) {
               </Testimonial>
             ))}
           </TestimonialSlider>
+          <Controls>
+            <PrevButton onClick={sliderRef?.slickPrev}>
+              <ChevronLeftIcon />
+            </PrevButton>
+            <NextButton onClick={sliderRef?.slickNext}>
+              <ChevronRightIcon />
+            </NextButton>
+          </Controls>
         </TestimonialSliderContainer>
       </Content>
       <DecoratorBlob1 />

@@ -10,9 +10,9 @@ import styled from "styled-components";
 import { ReactComponent as ArrowIcon } from "images/arrow-left-3-icon.svg";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 
-const StyledArrow = styled(ChevronLeftIcon)`
+const StyledArrow = styled(ArrowIcon)`
   color: white;
-  transform: rotate(90deg) translateY(-4px);
+  transform: rotate(90deg);
 `;
 const ChevronContainer = styled.div`
   -moz-box-shadow: rgba(0, 0, 0, 0.35) 2px 0px 5px;

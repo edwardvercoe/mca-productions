@@ -91,13 +91,15 @@ export default function ClientDetails({ gallery, globalSettings }) {
             : null}
         </VideoContainer>
         <GalleryContainer>
-          {galleryImages.map((item, index) => {
-            return (
-              <ImageContainer>
-                <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
-              </ImageContainer>
-            );
-          })}
+          {gallery.images
+            ? galleryImages.map((item, index) => {
+                return (
+                  <ImageContainer>
+                    <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
+                  </ImageContainer>
+                );
+              })
+            : null}
         </GalleryContainer>
       </PageContainer>
       <Footer globalSettings={globalSettings} />

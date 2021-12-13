@@ -17,6 +17,10 @@ const Description = tw(SectionDescription)`mx-auto text-center`;
 const Cards = tw.div`flex flex-wrap flex-row justify-center sm:max-w-2xl lg:max-w-5xl mx-auto`;
 const Card = tw.div`mt-24 w-full sm:w-1/2 lg:w-1/2 flex flex-col items-center`;
 const CardImage = styled.div`
+  transition: all 0.25s ease;
+  &:hover {
+    transform: scale(1.03);
+  }
   ${(props) =>
     css`
       background-image: url("${props.imageSrc}");
@@ -48,17 +52,17 @@ const CardLinks = styled.div`
   }
 `;
 
-export default function Team({ team, heading = "Meet These Fine Folks.", subheading = "Our Team", description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }) {
-  const cards = team.teamMembers;
+export default function Team({ team }) {
   if (!team) return <div>loading...</div>;
+  const cards = team.teamMembers;
 
   return (
     <Container id="team">
       <ContentWithPaddingXl>
         <HeadingContainer>
-          {subheading && <Subheading>Our Team</Subheading>}
-          {heading && <Heading>{team.title}</Heading>}
-          {description && <Description>{team.subtitle}</Description>}
+          <Subheading>Our Team</Subheading>
+          <Heading>{team.title}</Heading>
+          <Description>{team.subtitle}</Description>
         </HeadingContainer>
         <Cards>
           {cards.map((card, index) => (
