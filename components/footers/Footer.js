@@ -52,8 +52,8 @@ export default function Footer({ globalSettings }) {
           <LinksContainer>
             <Link href="/">Home</Link>
 
-            <Link href="/contact">Contact</Link>
             <Link href="/gallery">Gallery</Link>
+            <Link href="/contact">Contact</Link>
           </LinksContainer>
           <ContactContainer>
             <PhoneIcon />
