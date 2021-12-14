@@ -25,12 +25,13 @@ const PageContainer = styled.div`
 const GalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  @media (max-width: 767px) {
+  margin-bottom: 30px;
+  x @media (max-width: 767px) {
     display: block;
   }
 `;
 
-const HeadingInfoContainer = tw.div`flex flex-col items-center mt-20`;
+const HeadingInfoContainer = tw.div`flex flex-col items-center mt-40 mb-20`;
 
 const ImageContainer = styled.div`
   flex: 50%;
@@ -42,7 +43,7 @@ const ImageContainer = styled.div`
   }
 
   ${tw`rounded`}
-  margin: 60px 0;
+  margin: 20px 0;
   position: relative;
 
   img {
@@ -56,22 +57,31 @@ const ImageContainer = styled.div`
 const VideoContainer = styled.div`
   width: 100%;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  ${tw`rounded`}
+
+  @media (max-width: 767px) {
+    display: block;
+  }
 `;
 const StyledReactPlayer = styled(ReactPlayer)`
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0 5px;
 `;
 const PlayerWrapper = styled.div`
   position: relative;
-  margin: 60px 0;
+  flex: 50%;
+  margin: 0 0 30px 0;
   padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 `;
 
 export default function ClientDetails({ gallery, globalSettings }) {
   if (!gallery) return <div>Loading...</div>;
   const galleryImages = gallery.images;
-  console.log(gallery);
 
   return (
     <>
@@ -84,7 +94,7 @@ export default function ClientDetails({ gallery, globalSettings }) {
         <VideoContainer>
           {gallery.videos
             ? gallery.videos.map((item, index) => (
-                <PlayerWrapper>
+                <PlayerWrapper key={index}>
                   <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
                 </PlayerWrapper>
               ))
@@ -94,7 +104,7 @@ export default function ClientDetails({ gallery, globalSettings }) {
           {gallery.images
             ? galleryImages.map((item, index) => {
                 return (
-                  <ImageContainer>
+                  <ImageContainer key={index}>
                     <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
                   </ImageContainer>
                 );

@@ -8,15 +8,9 @@ import { SectionDescription } from "components/misc/Typography.js";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 import defaultCardImage from "images/shield-icon.svg";
+import { ReactComponent as SvgDotPatternIcon } from "../../images/dot-pattern.svg";
 
 import { ReactComponent as SvgDecoratorBlob3 } from "images/svg-decorator-blob-3.svg";
-
-import SupportIconImage from "images/support-icon.svg";
-import ShieldIconImage from "images/shield-icon.svg";
-import CustomizeIconImage from "images/customize-icon.svg";
-import FastIconImage from "images/fast-icon.svg";
-import ReliableIconImage from "images/reliable-icon.svg";
-import SimpleIconImage from "images/simple-icon.svg";
 
 const Container = tw.div`relative`;
 
@@ -58,9 +52,7 @@ const Card = styled.div`
   }
 `;
 
-const DecoratorBlob = styled(SvgDecoratorBlob3)`
-  ${tw`pointer-events-none absolute right-0 bottom-0 w-64 opacity-25 transform translate-x-32 translate-y-48 `}
-`;
+const DecoratorBlob = tw(SvgDotPatternIcon)`absolute bottom-0 right-0 transform translate-x-20 rotate-45 translate-y-24 -z-10 opacity-25 text-primary-500 fill-current w-24`;
 
 export default function Hero({ services }) {
   const cards = services.services;

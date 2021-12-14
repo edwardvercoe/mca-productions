@@ -5,6 +5,7 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { ReactComponent as SvgDotPatternIcon } from "images/dot-pattern.svg";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -32,6 +33,9 @@ const Textarea = styled(Input).attrs({ as: "textarea" })`
 
 const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`;
 
+const DecoratorBlob1 = tw(SvgDotPatternIcon)`absolute top-0 left-0 w-32 h-32 mb-3 ml-3 transform -translate-x-1/2 translate-y-1/2 fill-current text-primary-500 opacity-25`;
+const DecoratorBlob2 = tw(SvgDotPatternIcon)`absolute bottom-0 right-0 w-32 h-32 mt-16 mr-6 transform translate-x-1/2 -translate-y-1/2 fill-current text-primary-500 opacity-25`;
+
 export default function ContactUs({ contact, subheading = "Contact Us", submitButtonText = "Send", formAction = "#", formMethod = "get", textOnLeft = true }) {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
 
@@ -57,6 +61,8 @@ export default function ContactUs({ contact, subheading = "Contact Us", submitBu
           </TextContent>
         </TextColumn>
       </TwoColumn>
+      {/* <DecoratorBlob1 /> */}
+      <DecoratorBlob2 />
     </Container>
   );
 }

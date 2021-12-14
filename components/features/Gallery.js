@@ -7,8 +7,7 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading as HeadingTitle } from "../misc/Headings.js";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
-import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
-import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
+import { ReactComponent as SvgDotPatternIcon } from "../../images/dot-pattern.svg";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { SectionDescription } from "components/misc/Typography.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
@@ -152,8 +151,8 @@ const SliderControlButtonContainer = styled.div`
   }
 `;
 
-const DecoratorBlob1 = tw(SvgDecoratorBlob1)`absolute w-32 top-0 left-0 -z-10 text-primary-500 opacity-25 transform -translate-x-full`;
-const DecoratorBlob2 = tw(SvgDecoratorBlob2)`absolute w-32 bottom-0 right-0 -z-10 text-pink-500 opacity-15 transform translate-x-2/3 translate-y-8`;
+const DecoratorBlob1 = tw(SvgDotPatternIcon)`absolute top-1/2 left-0 transform -translate-x-20 rotate-90 translate-y-8 -z-10 opacity-25 text-primary-500 fill-current w-24`;
+const DecoratorBlob2 = tw(SvgDotPatternIcon)`absolute bottom-0 right-0 transform translate-x-20 rotate-45 translate-y-24 -z-10 opacity-25 text-primary-500 fill-current w-24`;
 
 export default function Gallery({ gallery }) {
   const galleryItems = gallery.galleryItems;
