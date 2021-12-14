@@ -1,4 +1,5 @@
 import Hero from "components/hero/Hero.js";
+import Navbar from "components/headers/Navbar";
 import Testimonial from "components/testimonials/Testimonials.js";
 import ContactUsForm from "components/forms/ContactUs.js";
 import RecentWork from "components/features/RecentWork.js";
@@ -12,7 +13,8 @@ import safeJsonStringify from "safe-json-stringify";
 export default function Home({ highlights, team, contact, testimonials, hero, globalSettings, services, gallery }) {
   return (
     <>
-      <Hero hero={hero} globalSettings={globalSettings} />
+      <Navbar globalSettings={globalSettings} />
+      <Hero hero={hero} />
       <RecentWork highlights={highlights} />
       <Gallery gallery={gallery} />
       <Testimonial testimonials={testimonials} />

@@ -17,23 +17,33 @@ const Description = tw(SectionDescription)`mx-auto`;
 const Posts = tw.div`mt-12 flex flex-wrap -mr-3 relative`;
 const Post = styled.div`
   cursor: pointer;
+  overflow: hidden;
+  &:hover {
+    .post-image {
+      transform: scale(1.03);
+    }
+  }
   ${tw`flex flex-col h-full bg-gray-200 rounded`}
 `;
+
+const PostImageContainer = styled.div`
+  overflow: hidden;
+`;
+
 const PostImage = styled.div`
+  transition: all 0.25s ease;
   ${(props) =>
     css`
       background-image: url("${props.imageSrc}");
     `}
   ${tw`h-64 sm:h-80 bg-center bg-cover rounded-t`}
 `;
-const PostText = tw.div`flex-1 px-6 py-8`;
+const PostText = styled.div`
+  z-index: 2;
+  ${tw`flex-1 px-6 py-8`}
+`;
 const PostTitle = tw.h6`font-bold group-hocus:text-primary-500 transition duration-300 `;
 const PostDescription = tw.p``;
-const AuthorInfo = tw.div`flex`;
-const AuthorImage = tw.img`w-12 h-12 rounded-full mr-3`;
-const AuthorTextInfo = tw.div`text-xs text-gray-600`;
-const AuthorName = tw.div`font-semibold mt-2`;
-const AuthorProfile = tw.div`pt-1 font-medium`;
 
 const PostContainer = styled.div`
   ${tw`relative z-20 mt-10 sm:pt-3 pr-3 w-full sm:w-1/2 lg:w-1/3 max-w-sm mx-auto sm:max-w-none sm:mx-0`}
@@ -45,8 +55,13 @@ const PostContainer = styled.div`
       ${Post} {
         ${tw`sm:flex-row items-center sm:pr-3`}
       }
+      ${PostImageContainer} {
+        width: 50%;
+        height: 100%;
+      }
       ${PostImage} {
         ${tw`sm:h-80 sm:min-h-full w-full sm:w-1/2 rounded-t sm:rounded-t-none sm:rounded-l`}
+        width: 100% !important;
       }
       ${PostText} {
         ${tw`pl-8 pr-5`}
@@ -56,12 +71,6 @@ const PostContainer = styled.div`
       }
       ${PostDescription} {
         ${tw`mt-4 text-sm font-semibold text-gray-600 leading-relaxed`}
-      }
-      ${AuthorInfo} {
-        ${tw`mt-8 flex items-center`}
-      }
-      ${AuthorName} {
-        ${tw`mt-0 font-bold text-gray-700 text-sm`}
       }
     `}
 `;
@@ -84,7 +93,9 @@ export default function GalleryGrid({ gallery }) {
             <PostContainer key={index}>
               <Link href={`/gallery/${post.fields.slug}`}>
                 <Post className="group">
-                  <PostImage imageSrc={post.fields.thumbnailImage.fields.file.url} />
+                  <PostImageContainer>
+                    <PostImage imageSrc={post.fields.thumbnailImage.fields.file.url} className="post-image" />
+                  </PostImageContainer>
                   <PostText>
                     <PostTitle>{post.fields.heading}</PostTitle>
                     {/* {post.featured && <PostDescription>{post.description}</PostDescription>} */}

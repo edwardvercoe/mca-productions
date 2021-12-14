@@ -3,16 +3,15 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import ReactPlayer from "react-player";
-import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import Typical from "react-typical";
-import Link from "next/link";
 
-const StyledReactPlayer = styled(ReactPlayer)`
+const ReactPlayerConainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 76px);
+  margin-top: 76px;
   &:after {
     content: " ";
     background-color: black;
@@ -27,16 +26,6 @@ const StyledReactPlayer = styled(ReactPlayer)`
 const StyledTypical = styled(Typical)`
   background-color: rgba(255, 255, 255, 0.2);
   ${tw`font-black`}
-`;
-
-const StyledHeader = styled(Header)`
-  ${tw`pt-8 max-w-none w-full`}
-  ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
-    ${tw`text-gray-100 hover:border-gray-300 hover:text-gray-300`}
-  }
-  ${NavToggle}.closed {
-    ${tw`text-gray-100 hover:text-primary-500`}
-  }
 `;
 
 const Container = styled.div`
@@ -68,24 +57,13 @@ export default function Hero({ hero, globalSettings }) {
     textArray.push(item, 2000);
   }
 
-  const navLinks = [
-    <NavLinks key={1}>
-      <Link key={"/gallery"} href={"/gallery"}>
-        <NavLink>Gallery</NavLink>
-      </Link>
-      <Link key={"/contact"} href={"/contact"}>
-        <NavLink>Contact</NavLink>
-      </Link>
-    </NavLinks>,
-  ];
-
   return (
     <Container>
       <OpacityOverlay />
-      <StyledReactPlayer className="anim-slide-out-top" controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
-
+      <ReactPlayerConainer className="anim-slide-out-top">
+        <ReactPlayer controls={false} playing={true} loop={true} volume={0} muted={true} width={"100%"} height={"100%"} url={hero.backgroundVideoUrl} />
+      </ReactPlayerConainer>
       <HeroContainer>
-        <StyledHeader links={navLinks} globalSettings={globalSettings} />
         <Content>
           <Heading>
             {hero.titlePrefix}&nbsp;
