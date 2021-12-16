@@ -78,7 +78,7 @@ const TestimonialSlider = styled(Slider)`
     }
 
     @media (max-width: 678px) {
-      opacity: 1 !important;
+      opacity: 0;
       pointer-events: visible;
     }
   }
