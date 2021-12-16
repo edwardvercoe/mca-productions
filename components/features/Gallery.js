@@ -185,6 +185,8 @@ export default function Gallery({ gallery }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          autoplay: false,
+          draggable: true,
         },
       },
     ],
