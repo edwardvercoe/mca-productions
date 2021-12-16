@@ -87,6 +87,11 @@ const TestimonialSlider = styled(Slider)`
     transition: all 0.3s ease;
     opacity: 1;
     pointer-events: visible;
+    @media (max-width: 678px) {
+      opacity: 1 !important;
+      pointer-events: visible !important;
+      transform: none;
+    }
 
     h4 {
       transition: all 0.3s ease;
@@ -177,6 +182,7 @@ export default function Gallery({ gallery }) {
     autoplay: true,
     arrows: false,
     draggable: false,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
@@ -191,7 +197,7 @@ export default function Gallery({ gallery }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           draggable: true,
-          centerMode: false,
+          initialSlide: 1,
         },
       },
     ],
