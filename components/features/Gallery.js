@@ -65,8 +65,9 @@ const TestimonialSlider = styled(Slider)`
     opacity: 0;
     transition: all 0.3s ease;
     pointer-events: none;
+
     @media (max-width: 678px) {
-      opacity: 1 !important;
+      pointer-events: visible;
     }
   }
   .slick-active {
@@ -78,6 +79,7 @@ const TestimonialSlider = styled(Slider)`
 
     @media (max-width: 678px) {
       opacity: 1 !important;
+      pointer-events: visible;
     }
   }
   .slick-center {
@@ -189,6 +191,7 @@ export default function Gallery({ gallery }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           draggable: true,
+          centerMode: false,
         },
       },
     ],
