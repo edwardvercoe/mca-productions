@@ -26,7 +26,7 @@ const GalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  x @media (max-width: 767px) {
+  @media (max-width: 767px) {
     display: block;
   }
 `;

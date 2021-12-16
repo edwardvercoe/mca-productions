@@ -72,6 +72,10 @@ const TestimonialSlider = styled(Slider)`
     &:hover {
       opacity: 1;
     }
+
+    @media (max-width: 1024px) {
+      opacity: 0;
+    }
   }
   .slick-center {
     transform: scale(1.1);
@@ -174,7 +178,13 @@ export default function Gallery({ gallery }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
+        },
+      },
+      {
+        breakpoint: 678,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
