@@ -197,7 +197,6 @@ export default function Gallery({ gallery }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           draggable: true,
-          initialSlide: 1,
         },
       },
     ],

@@ -13,7 +13,7 @@ import safeJsonStringify from "safe-json-stringify";
 export default function Home({ highlights, team, contact, testimonials, hero, globalSettings, services, gallery }) {
   return (
     <>
-      <Navbar globalSettings={globalSettings} />
+      <Navbar home={true} globalSettings={globalSettings} />
       <Hero hero={hero} />
       <RecentWork highlights={highlights} />
       <Gallery gallery={gallery} />

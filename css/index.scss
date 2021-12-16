@@ -2,6 +2,11 @@
 @import "./modal-video.scss";
 @import "./animations.scss";
 
+:root {
+  --headerBg: #1a202c;
+  --headerBoxShadow: rgba(0, 0, 0, 0.8) 0 1px 4px;
+}
+
 @-webkit-keyframes noise {
   0% {
     -webkit-transform: translate3d(0, 9rem, 0);

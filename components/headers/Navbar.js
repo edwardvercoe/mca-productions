@@ -3,6 +3,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "./light";
+import { useScroll } from "../../hooks/useScroll";
 
 const StyledHeader = styled(Header)`
   ${tw`pt-4 max-w-none w-full`}
@@ -22,7 +23,22 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   z-index: 500;
-  ${tw` bg-center bg-gray-900 `}
+  transition: all 150ms linear;
+  ${tw` bg-center  `}
+
+  ${(props) =>
+    props.isScrolled &&
+    css`
+      background: var(--headerBg);
+      box-shadow: var(--headerBoxShadow);
+    `}
+
+    ${(props) =>
+    !props.home &&
+    css`
+      background: var(--headerBg);
+      box-shadow: var(--headerBoxShadow);
+    `}
 `;
 
 const InnerContainer = tw.div`z-20 relative px-6 sm:px-8 mx-auto flex flex-col`;
@@ -41,8 +57,10 @@ const PrimaryAction = styled.span`
   ${tw`rounded`}
 `;
 
-export default function Navbar({ globalSettings }) {
+export default function Navbar({ globalSettings, home }) {
   if (!globalSettings) return <div>loading...</div>;
+
+  const { isScrolled } = useScroll();
 
   const navLinks = [
     <NavLinks key={1}>
@@ -59,7 +77,7 @@ export default function Navbar({ globalSettings }) {
   ];
 
   return (
-    <Container>
+    <Container isScrolled={isScrolled} home={home}>
       <InnerContainer>
         <StyledHeader links={navLinks} globalSettings={globalSettings} />
       </InnerContainer>
