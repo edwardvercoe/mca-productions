@@ -17,6 +17,66 @@ const client = createClient({
   space: space,
   accessToken: accessToken,
 });
+
+export default function ClientDetails({ gallery, globalSettings }) {
+  if (!gallery) return <div>Loading...</div>;
+  const galleryImages = gallery.images;
+
+  return (
+    <>
+      <Navbar globalSettings={globalSettings} />
+
+      <PageContainer>
+        <HeadingInfoContainer>
+          <HeadingTitle>{gallery.heading}</HeadingTitle>
+        </HeadingInfoContainer>
+        <VideoContainer>
+          {gallery.videos
+            ? gallery.videos.map((item, index) => (
+                <PlayerWrapper key={index}>
+                  <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
+                </PlayerWrapper>
+              ))
+            : null}
+        </VideoContainer>
+        <GalleryContainer>
+          {gallery.images
+            ? galleryImages.map((item, index) => {
+                return (
+                  <ImageContainer key={index}>
+                    <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
+                    {item.fields.description ? (
+                      <ImageCredit>
+                        <em>{item.fields.description}</em>
+                      </ImageCredit>
+                    ) : null}
+                  </ImageContainer>
+                );
+              })
+            : null}
+        </GalleryContainer>
+      </PageContainer>
+      <Footer globalSettings={globalSettings} />
+    </>
+  );
+}
+
+export async function getServerSideProps({ params }) {
+  const globalData = await fetchRecentWork({ content_type: "globalHeaderfooter" });
+  const stringifiedGlobal = safeJsonStringify(globalData);
+  const globalSettings = JSON.parse(stringifiedGlobal);
+
+  // get gallery items
+  const { items } = await client.getEntries({
+    content_type: "galleryItem",
+    "fields.slug": params.slug,
+  });
+
+  return {
+    props: { gallery: items[0].fields, globalSettings: globalSettings[0].fields },
+  };
+}
+
 const PageContainer = styled.div`
   margin: 0 auto;
   max-width: 1440px;
@@ -33,9 +93,31 @@ const GalleryContainer = styled.div`
 
 const HeadingInfoContainer = tw.div`flex flex-col items-center mt-40 mb-20`;
 
+const ImageCredit = styled.div`
+  // Credit section
+
+  width: calc(100% - 10px);
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 5px;
+  ${tw`rounded`}
+  color: white;
+
+  display: flex;
+  align-items: center;
+  em {
+    padding: 20px;
+  }
+`;
+
 const ImageContainer = styled.div`
   flex: 50%;
   padding: 0 5px;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 767px) {
     flex: 1 0 0;
@@ -78,57 +160,3 @@ const PlayerWrapper = styled.div`
   margin: 0 0 30px 0;
   padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 `;
-
-export default function ClientDetails({ gallery, globalSettings }) {
-  if (!gallery) return <div>Loading...</div>;
-  const galleryImages = gallery.images;
-
-  return (
-    <>
-      <Navbar globalSettings={globalSettings} />
-
-      <PageContainer>
-        <HeadingInfoContainer>
-          <HeadingTitle>{gallery.heading}</HeadingTitle>
-        </HeadingInfoContainer>
-        <VideoContainer>
-          {gallery.videos
-            ? gallery.videos.map((item, index) => (
-                <PlayerWrapper key={index}>
-                  <StyledReactPlayer controls={false} playing={false} width="100%" height="100%" url={item} />
-                </PlayerWrapper>
-              ))
-            : null}
-        </VideoContainer>
-        <GalleryContainer>
-          {gallery.images
-            ? galleryImages.map((item, index) => {
-                return (
-                  <ImageContainer key={index}>
-                    <Image src={"https:" + item.fields.file.url} height={item.fields.file.details.image.height} width={item.fields.file.details.image.width} layout="responsive" objectFit="cover" />
-                  </ImageContainer>
-                );
-              })
-            : null}
-        </GalleryContainer>
-      </PageContainer>
-      <Footer globalSettings={globalSettings} />
-    </>
-  );
-}
-
-export async function getServerSideProps({ params }) {
-  const globalData = await fetchRecentWork({ content_type: "globalHeaderfooter" });
-  const stringifiedGlobal = safeJsonStringify(globalData);
-  const globalSettings = JSON.parse(stringifiedGlobal);
-
-  // get gallery items
-  const { items } = await client.getEntries({
-    content_type: "galleryItem",
-    "fields.slug": params.slug,
-  });
-
-  return {
-    props: { gallery: items[0].fields, globalSettings: globalSettings[0].fields },
-  };
-}

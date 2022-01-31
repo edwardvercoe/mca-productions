@@ -15,11 +15,11 @@ export default function Home({ highlights, team, contact, testimonials, hero, gl
     <>
       <Navbar home={true} globalSettings={globalSettings} />
       <Hero hero={hero} />
+      <Services services={services} />
       <RecentWork highlights={highlights} />
       <Gallery gallery={gallery} />
       <Testimonial testimonials={testimonials} />
       <Team team={team} />
-      <Services services={services} />
       <ContactUsForm contact={contact} />
       <Footer globalSettings={globalSettings} />
     </>
