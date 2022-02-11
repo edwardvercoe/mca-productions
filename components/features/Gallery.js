@@ -176,26 +176,18 @@ export default function Gallery({ gallery }) {
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
-    slidesToScroll: 1,
+
     speed: 500,
     autoplaySpeed: 4000,
     autoplay: true,
     arrows: false,
     draggable: false,
-    initialSlide: 0,
+    initialSlide: 1,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 678,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
           draggable: true,
         },
       },

@@ -4,7 +4,9 @@ import Testimonial from "components/testimonials/Testimonials.js";
 import ContactUsForm from "components/forms/ContactUs.js";
 import RecentWork from "components/features/RecentWork.js";
 import Team from "components/cards/TeamProfile";
-import Gallery from "components/features/Gallery";
+// import Gallery from "components/features/Gallery";
+import GallerySlider from "components/features/GallerySlider";
+
 import Services from "components/features/Services";
 import Footer from "components/footers/Footer";
 import { fetchRecentWork } from "../contentful/fetchData";
@@ -17,7 +19,8 @@ export default function Home({ highlights, team, contact, testimonials, hero, gl
       <Hero hero={hero} />
       <Services services={services} />
       <RecentWork highlights={highlights} />
-      <Gallery gallery={gallery} />
+      {/* <Gallery gallery={gallery} /> */}
+      <GallerySlider gallery={gallery} />
       <Testimonial testimonials={testimonials} />
       <Team team={team} />
       <ContactUsForm contact={contact} />

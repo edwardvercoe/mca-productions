@@ -31,6 +31,7 @@
     "sass": "^1.44.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.1",
+    "swiper": "^6.8.4",
     "truncate-html": "^1.0.3",
     "twin.macro": "^1.6.2",
     "use-in-view": "^1.0.15"
