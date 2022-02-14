@@ -22,7 +22,7 @@ const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24`;
 const HeadingInfoContainer = tw.div`flex flex-col items-center`;
 const HeadingDescription = styled.p`
-  ${tw`mt-4 font-medium text-gray-600 text-center max-w-sm`}
+  ${tw`mt-4  text-gray-600 text-center max-w-sm text-lg lg:text-xl xl:text-2xl`}
   a {
     ${tw`font-bold text-primary-500`}
     position: relative;
