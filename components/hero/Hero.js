@@ -12,6 +12,14 @@ const ReactPlayerConainer = styled.div`
   width: 100%;
   height: calc(100% - 76px);
   margin-top: 76px;
+
+  iframe {
+    /* Extend it beyond the viewport... */
+    width: 300%;
+    height: 100%;
+    /* ...and bring it back again */
+    margin-left: -100%;
+  }
   &:after {
     content: " ";
     background-color: black;
